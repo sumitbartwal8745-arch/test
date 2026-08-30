@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Id Card Design Assignment</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      border: 2px solid #000;
+    }
+
+    /* Left Control Panel */
+    .controls {
+      width: 35%;
+      background-color: #f8f8f8;
+      padding: 20px;
+      border-right: 2px solid #000;
+    }
+
+    .controls h2 {
+      text-align: center;
+      text-decoration: underline;
+      margin-bottom: 20px;
+    }
+
+    .controls ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+
+    .controls li {
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-top: 5px;
+      width: 80px;
+      margin-left: 10px;
+    }
+
+    .btn-group button {
+      padding: 3px 8px;
+      background-color: #efefef;
+      border: 1px solid #767676;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+
+    .btn-group button:hover {
+      background-color: #e0e0e0;
+    }
+
+    /* Image Selection */
+    .image-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+      margin-left: 10px;
+    }
+
+    .img-option {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid #767676;
+      cursor: pointer;
+      object-fit: cover;
+    }
+
+    /* Right Card Display Area */
+    .display-area {
+      width: 65%;
+      background-color: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    .card-title {
+      color: #fff;
+      text-decoration: underline;
+      font-size: 22px;
+      margin-bottom: 30px;
+    }
+
+    /* Outer Border Box */
+    .card-border {
+      border: 2px solid #fff;
+      padding: 25px;
+      width: 90%;
+      max-width: 650px;
+    }
+
+    /* Flexible Inner Card Content */
+    .card-content {
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      border-radius: 4px;
+    }
+
+    .details {
+      font-size: 16px;
+      line-height: 2;
+    }
+
+    .profile-photo {
+      width: 180px;
+      height: 210px;
+      object-fit: cover;
+      border: 1px solid #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LEFT CONTROL PANEL -->
+  <div class="controls">
+    <h2><u>Id Card Design</u></h2>
+    <ul>
+      <li>
+        <u>BackgroundColor</u>
+        <div class="btn-group">
+          <button onclick="changeBg('red')">Red</button>
+          <button onclick="changeBg('black')">Black</button>
+          <button onclick="changeBg('blue')">Blue</button>
+        </div>
+      </li>
+
+      <li>
+        <u>TextColor</u>
+        <div class="btn-group">
+          <button onclick="changeTextColor('white')">White</button>
+          <button onclick="changeTextColor('red')">Red</button>
+          <button onclick="changeTextColor('blue')">Blue</button>
+        </div>
+      </li>
+
+      <li>
+        <u>TextAlign</u>
+        <div class="btn-group">
+          <button onclick="changeTextAlign('left')">Left</button>
+          <button onclick="changeTextAlign('center')">Center</button>
+          <button onclick="changeTextAlign('right')">Right</button>
+        </div>
+      </li>
+
+      <li>
+        <u>Images</u>
+        <div class="image-group">
+          <img src="public/image (1).jpg" class="img-option" onclick="changeImage(this.src)" alt="Img 1">
+          <img src="public/apj.jpg" class="img-option" onclick="changeImage(this.src)" alt="Img 2">
+          <img src="public/image (3).jpg" class="img-option" onclick="changeImage(this.src)" alt="Img 3">
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- RIGHT DISPLAY AREA -->
+  <div class="display-area">
+    <h2 class="card-title"><u>Identity Card</u></h2>
+    
+    <div class="card-border">
+      <div class="card-content" id="idCard">
+        <div class="details" id="cardText">
+          <p>Name :- Rohan Prajapati</p>
+          <p>Email :- xyz@gmail.com</p>
+          <p>Mobile :- +91-9998979695</p>
+          <p>City :- Moradabad</p>
+          <p>State :- Uttar Pradesh</p>
+          <p>Pincode :- 244001</p>
+        </div>
+        <img id="userImg" class="profile-photo" src="public/image (1).jpg">
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT FOR INTERACTIVITY -->
+  <script>
+    function changeBg(color) {
+      document.getElementById('idCard').style.backgroundColor = color;
+    }
+
+    function changeTextColor(color) {
+      document.getElementById('cardText').style.color = color;
+    }
+
+    function changeTextAlign(align) {
+      document.getElementById('cardText').style.textAlign = align;
+    }
+
+    function changeImage(src) {
+      document.getElementById('userImg').src = src;
+    }
+  </script>
+
+</body>
+</html>

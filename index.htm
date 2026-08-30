@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body{
+            display:flex;
+            height: 100vh;
+            border: 2px solid #000;
+        }
+        /* left side pannel */
+        .control{
+            width: 35%;
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-right: 2px solid #000;
+        }
+        .control h2{
+            text-align: center;
+            text-decoration: underline;
+            margin-bottom: 20px;
+        }
+        .control ul{
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .control li{
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .btn-group{
+            display:flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-top: 5px;
+            width: 80px;
+            margin-left: 10px;
+        }
+        .btn-group button{
+            padding: 3px 8px;
+            background-color: #efefef;
+            border: 1px solid #767676;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+        .btn-group button:hover{
+            background-color: #dcdcdc;
+        }
+        .btn-group button:active{
+            background-color: #c0c0c0;
+        }
+        .image-group{
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+            margin-left: 10px;
+        }
+        .img-option{
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .img-option:hover{
+            border: 2px solid #000;
+        }
+        /* display area */
+        .display-area{
+            width: 65%;
+            padding: 20px;
+            background-color: black;
+        }
+        .card-title{
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+        .card-content{
+            width: 300px;
+            height: 200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            background-color: black;
+            
+        }
+        .card-border{
+            border: 2px solid white;
+            padding: 20px;
+            position: relative;
+            width: 500px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        .card-border .details{
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .card-border .profile-photo{
+            position: absolute;
+            top: 20px;
+            right: 5px;
+            width: 100px;
+            height: 80px;
+            object-fit: cover;
+            border: 2px solid white;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <!-- left side pannel  -->
+     <div class="control">
+        <h2><u>idcard design</u></h2>
+        <ul>
+        <li>
+            <u>background color</u>
+            <div class="btn-group">
+                <button onclick="getElementById('idcard').style.backgroundColor = 'red'">red</button>
+                <button onclick="getElementById('idcard').style.backgroundColor = 'black'">black</button>
+                <button onclick="getElementById('idcard').style.backgroundColor = 'blue'">blue</button>
+            </div>
+        </li>
+
+        <li>
+            <u>text color</u>
+            <div class="btn-group">
+                <button onclick="getElementById('cardtext').style.color = 'red'">red</button>
+                <button onclick="getElementById('cardtext').style.color = 'black'">black</button>
+                <button onclick="getElementById('cardtext').style.color = 'blue'">blue</button>
+            </div>
+        </li>
+
+        <li>
+             <u>text align</u>
+             <div class="btn-group">
+                <button onclick="getElementById('cardtext').style.textAlign = 'left'">left</button>
+                <button onclick="getElementById('cardtext').style.textAlign = 'center'">center</button>
+                <button onclick="getElementById('cardtext').style.textAlign = 'right'">right</button>
+             </div>
+        </li>
+
+        <li>
+            <u>image</u>
+            <div class="image-group">
+                <img onclick="getElementById('userImage').src = 'public/image (3).jpg'" src="public/image (3).jpg" class="img-option" alt="image 1">
+                <img onclick="getElementById('userImage').src = 'public/image (1).jpg'" src="public/image (1).jpg"  class="img-option" alt="image 2">
+                <img onclick="getElementById('userImage').src = 'public/apj.jpg'" src="public/apj.jpg" class="img-option" alt="APJ Abdul Kalam">
+            </div>
+        </li>
+    </ul>
+     </div>
+     <!-- display pannel -->
+     <div class="display-area">
+     <div class="card-title">
+        <h2><u>identity card</u></h2>
+        <div class="card-border">
+        <div class="card-content" id="idcard">
+            <div class="details" id="cardtext">
+          </p>Name :- Rohan Prajapati</p>
+          <p>Email :- xyz@gmail.com</p>
+          <p>Mobile :- +91-9998979695</p>
+          <p>City :- Moradabad</p>
+          <p>State :- Uttar Pradesh</p>
+          <p>Pincode :- 244001</p>
+            </div>
+            <img src="public/image (3).jpg" alt="image" class="profile-photo" id="userImage">
+            </div>
+        </div>
+     </div>
+     </div>
+     <script>
+       
+</body>
+</html>
