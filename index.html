@@ -2,179 +2,258 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Id Card Design Assignment</title>
+  <title>ID Card Studio</title>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      font-family: "Segoe UI", sans-serif;
     }
 
     body {
-      display: flex;
-      height: 100vh;
-      border: 2px solid #000;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(240px, 300px) 1fr;
+      background: #eef1f4;
+      color: #17202a;
     }
 
-    /* Left Control Panel */
     .controls {
-      width: 35%;
-      background-color: #f8f8f8;
-      padding: 20px;
-      border-right: 2px solid #000;
+      padding: 36px 28px;
+      background: #173f5f;
+      color: #fff;
     }
 
     .controls h2 {
-      text-align: center;
-      text-decoration: underline;
-      margin-bottom: 20px;
+      margin-bottom: 8px;
+      font-size: 25px;
     }
 
-    .controls ul {
-      list-style-type: disc;
-      padding-left: 20px;
+    .intro {
+      margin-bottom: 36px;
+      color: #b9d3e3;
+      font-size: 14px;
     }
 
-    .controls li {
-      margin-bottom: 15px;
-      font-weight: bold;
+    .control-section {
+      border: 0;
+      margin-bottom: 28px;
     }
 
-    .btn-group {
+    .control-section legend {
+      margin-bottom: 10px;
+      color: #f6c85f;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .btn-group,
+    .image-group {
       display: flex;
-      flex-direction: column;
-      gap: 5px;
-      margin-top: 5px;
-      width: 80px;
-      margin-left: 10px;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
     .btn-group button {
-      padding: 3px 8px;
-      background-color: #efefef;
-      border: 1px solid #767676;
-      border-radius: 2px;
+      flex: 1;
+      min-width: 70px;
+      padding: 9px 12px;
+      background: #245779;
+      color: #fff;
+      border: 1px solid #4d7892;
+      border-radius: 5px;
       cursor: pointer;
+      font-size: 13px;
     }
 
-    .btn-group button:hover {
-      background-color: #e0e0e0;
+    button:hover,
+    button:focus-visible {
+      background: #2f7397;
+      outline: 2px solid #f6c85f;
+      outline-offset: 2px;
     }
 
-    /* Image Selection */
-    .image-group {
-      display: flex;
-      gap: 10px;
-      margin-top: 8px;
-      margin-left: 10px;
+    .image-group button {
+      padding: 3px;
+      background: transparent;
+      border: 2px solid transparent;
+      border-radius: 50%;
+      cursor: pointer;
     }
 
     .img-option {
-      width: 50px;
-      height: 50px;
+      display: block;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      border: 1px solid #767676;
-      cursor: pointer;
       object-fit: cover;
     }
 
-    /* Right Card Display Area */
     .display-area {
-      width: 65%;
-      background-color: #000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      display: grid;
+      place-content: center;
+      min-width: 0;
       padding: 40px;
+      background: #f7f8f5;
+      background-image: linear-gradient(135deg, rgba(23, 63, 95, .06) 25%, transparent 25%), linear-gradient(315deg, rgba(246, 200, 95, .08) 25%, transparent 25%);
+      background-size: 32px 32px;
     }
 
     .card-title {
-      color: #fff;
-      text-decoration: underline;
-      font-size: 22px;
-      margin-bottom: 30px;
+      margin-bottom: 24px;
+      color: #173f5f;
+      font-size: clamp(24px, 3vw, 36px);
+      text-align: center;
     }
 
-    /* Outer Border Box */
     .card-border {
-      border: 2px solid #fff;
-      padding: 25px;
-      width: 90%;
-      max-width: 650px;
+      width: min(100%, 720px);
+      padding: 10px;
+      border: 1px solid #d6dde1;
+      background: #fff;
+      box-shadow: 0 18px 40px rgba(23, 63, 95, .16);
     }
 
-    /* Flexible Inner Card Content */
     .card-content {
-      background-color: #000;
-      color: #fff;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 15px;
-      border-radius: 4px;
+      justify-content: space-between;
+      min-height: 280px;
+      gap: 28px;
+      padding: 30px;
+      background: #173f5f;
+      color: #fff;
+      border-left: 7px solid #f6c85f;
+      transition: background-color .2s ease;
     }
 
     .details {
+      flex: 1;
+      min-width: 0;
       font-size: 16px;
-      line-height: 2;
+      line-height: 1.9;
+      overflow-wrap: anywhere;
+    }
+
+    .details p:first-child {
+      margin-bottom: 8px;
+      color: #f6c85f;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.2;
     }
 
     .profile-photo {
-      width: 180px;
-      height: 210px;
+      width: 160px;
+      height: 190px;
+      flex: 0 0 auto;
       object-fit: cover;
-      border: 1px solid #fff;
+      border: 4px solid #fff;
+      box-shadow: 6px 6px 0 #f6c85f;
+    }
+
+    @media (max-width: 700px) {
+      body {
+        display: block;
+      }
+
+      .controls {
+        padding: 24px 20px;
+      }
+
+      .intro {
+        margin-bottom: 24px;
+      }
+
+      .control-section {
+        display: inline-block;
+        width: 49%;
+        vertical-align: top;
+        padding-right: 8px;
+      }
+
+      .display-area {
+        padding: 32px 16px 48px;
+      }
+
+      .card-content {
+        align-items: flex-start;
+        padding: 22px;
+      }
+
+      .profile-photo {
+        width: 112px;
+        height: 136px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .control-section {
+        display: block;
+        width: 100%;
+      }
+
+      .card-content {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+      }
+
+      .details {
+        width: 100%;
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- LEFT CONTROL PANEL -->
   <div class="controls">
-    <h2><u>Id Card Design</u></h2>
-    <ul>
-      <li>
-        <u>BackgroundColor</u>
-        <div class="btn-group">
-          <button onclick="changeBg('red')">Red</button>
-          <button onclick="changeBg('black')">Black</button>
-          <button onclick="changeBg('blue')">Blue</button>
-        </div>
-      </li>
+    <h2>ID Card Studio</h2>
+    <p class="intro">Shape the card preview with a few quick choices.</p>
 
-      <li>
-        <u>TextColor</u>
+    <fieldset class="control-section">
+      <legend>Background color</legend>
         <div class="btn-group">
-          <button onclick="changeTextColor('white')">White</button>
-          <button onclick="changeTextColor('red')">Red</button>
-          <button onclick="changeTextColor('blue')">Blue</button>
+          <button type="button" onclick="changeBg('#c94c4c')">Red</button>
+          <button type="button" onclick="changeBg('#17202a')">Black</button>
+          <button type="button" onclick="changeBg('#256d85')">Blue</button>
         </div>
-      </li>
+    </fieldset>
 
-      <li>
-        <u>TextAlign</u>
+    <fieldset class="control-section">
+      <legend>Text color</legend>
         <div class="btn-group">
-          <button onclick="changeTextAlign('left')">Left</button>
-          <button onclick="changeTextAlign('center')">Center</button>
-          <button onclick="changeTextAlign('right')">Right</button>
+          <button type="button" onclick="changeTextColor('#ffffff')">White</button>
+          <button type="button" onclick="changeTextColor('#f6c85f')">Gold</button>
+          <button type="button" onclick="changeTextColor('#9bd0e5')">Sky</button>
         </div>
-      </li>
+    </fieldset>
 
-      <li>
-        <u>Images</u>
+    <fieldset class="control-section">
+      <legend>Text alignment</legend>
+        <div class="btn-group">
+          <button type="button" onclick="changeTextAlign('left')">Left</button>
+          <button type="button" onclick="changeTextAlign('center')">Center</button>
+          <button type="button" onclick="changeTextAlign('right')">Right</button>
+        </div>
+    </fieldset>
+
+    <fieldset class="control-section">
+      <legend>Profile image</legend>
         <div class="image-group">
-          <img src="public/image (1).jpg" class="img-option" onclick="changeImage(this.src)" alt="Img 1">
-          <img src="public/apj.jpg" class="img-option" onclick="changeImage(this.src)" alt="Img 2">
-          <img src="public/image (3).jpg" class="img-option" onclick="changeImage(this.src)" alt="Img 3">
+          <button type="button" onclick="changeImage(this.querySelector('img').src)" aria-label="Choose profile image one"><img src="public/image (1).jpg" class="img-option" alt=""></button>
+          <button type="button" onclick="changeImage(this.querySelector('img').src)" aria-label="Choose profile image two"><img src="public/apj.jpg" class="img-option" alt=""></button>
+          <button type="button" onclick="changeImage(this.querySelector('img').src)" aria-label="Choose profile image three"><img src="public/image (3).jpg" class="img-option" alt=""></button>
         </div>
-      </li>
-    </ul>
+    </fieldset>
   </div>
 
-  <!-- RIGHT DISPLAY AREA -->
   <div class="display-area">
-    <h2 class="card-title"><u>Identity Card</u></h2>
+    <h1 class="card-title">Identity Card</h1>
     
     <div class="card-border">
       <div class="card-content" id="idCard">
@@ -186,7 +265,7 @@
           <p>State :- Uttar Pradesh</p>
           <p>Pincode :- 244001</p>
         </div>
-        <img id="userImg" class="profile-photo" src="public/image (1).jpg">
+        <img id="userImg" class="profile-photo" src="public/image (1).jpg" alt="Profile portrait">
       </div>
     </div>
   </div>
